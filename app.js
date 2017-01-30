@@ -35,6 +35,11 @@ let createTR = function (JSON, month) {
 document.getElementById('tbody').innerHTML = createTR(JSON, 'jan').join('');
 
 select.addEventListener('change', function (e) {
-  // selectedMonth = Array.from(select.children).filter(child => child.value === select.value)[0].innerHTML;
-  document.getElementById('tbody').innerHTML = createTR(JSON, select.value).join('');
+  let newTransactions = createTR(JSON, select.value).join('');
+
+  if (!newTransactions.length) {
+    document.getElementById('tbody').innerHTML = 'Keine Umsatze dieses Monat';
+  } else {
+    document.getElementById('tbody').innerHTML = newTransactions;
+  }
 });
